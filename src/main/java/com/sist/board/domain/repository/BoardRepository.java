@@ -1,7 +1,9 @@
 package com.sist.board.domain.repository;
 
 import com.sist.board.domain.entity.BoardEntity;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,11 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 
     // detail
     public BoardEntity findByNo(@Param("no") Integer no);
+
+    @Transactional
+    @Modifying
+    @Query(value = "delete from board where no=:no", nativeQuery = true)
+    public void boardDelete(@Param("no") Integer no);
 
 
 

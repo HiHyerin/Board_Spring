@@ -77,4 +77,28 @@ public class BoardController {
 
         return boardEntity;
     }
+
+    @GetMapping("board/update_react")
+    public BoardEntity boardUpdate(int no){
+        BoardEntity vo = bRepo.findByNo(no);
+
+        return vo;
+    }
+    @PostMapping("board/updateOk_react")
+    public String boardUpdateOk(@RequestBody BoardEntity boardEntity){
+        System.out.println("이게들어와?컨트롤러에이이이잇");
+        System.out.println("no="+boardEntity.getNo());
+
+        bRepo.save(boardEntity);
+        
+        return "";
+    }
+
+    @GetMapping("board/delete_react")
+    public void boardDelete(int no){
+        System.out.println("delete?컨트롤러에이이이잇");
+        bRepo.boardDelete(no);
+    }
+
+
 }
