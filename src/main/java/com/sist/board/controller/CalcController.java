@@ -12,9 +12,6 @@ public class CalcController {
 
     @GetMapping("calc/result_react")
     public String calcResult(String x){
-        System.out.println("웩");
-        String result = calcService.calcResult(x);
-
-        return result;
+        return calcService.calcResult(x);
     }
 }
